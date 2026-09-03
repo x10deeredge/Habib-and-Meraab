@@ -14,7 +14,7 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100svh;
     z-index: 0;
     pointer-events: none;
 }
@@ -111,3 +111,5 @@ body {
     }
 }
 html, body { width: 100%; height: 100%; margin: 0; padding: 0; background-color: #020408; overflow-x: hidden; }
+
+@media (max-width: 640px) { main { padding: 0 10px; } .glass-panel { padding: 1.25rem !important; min-height: 380px !important; } h1.font-vibes { font-size: 4rem !important; } h2 { font-size: 1.35rem !important; } p { font-size: 0.9rem !important; } }
