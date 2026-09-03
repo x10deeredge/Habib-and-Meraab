@@ -29,7 +29,7 @@ html, body {
     justify-content: center;
 }
 
-/* Frosted Glassmorphism Look (Background Visible) */
+/* Frosted Glassmorphism Look */
 .glass-panel {
     background: rgba(10, 14, 24, 0.55);
     backdrop-filter: blur(18px);
