@@ -1,116 +1,107 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap');
 
-body {
-    background-color: #050508;
-    font-family: 'Poppins', sans-serif;
-    color: #f3f4f6;
-    margin: 0;
-    padding: 0;
+/* Global Font & Reset Force */
+* {
+    font-family: 'Poppins', sans-serif !important;
 }
 
-/* Three.js Background Canvas */
+.font-vibes { 
+    font-family: 'Great Vibes', cursive !important; 
+}
+
+.font-cinzel { 
+    font-family: 'Cinzel', serif !important; 
+}
+
+html, body {
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    margin: 0;
+    padding: 0;
+    background-color: #020408;
+    color: #f3f4f6;
+    overflow-x: hidden;
+    perspective: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Frosted Glassmorphism Look (Background Visible) */
+.glass-panel {
+    background: rgba(10, 14, 24, 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(244, 63, 94, 0.3);
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.8), 0 0 50px rgba(244, 63, 94, 0.15);
+    transform-style: preserve-3d;
+    transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
+}
+
+.glass-panel:hover {
+    border-color: rgba(244, 63, 94, 0.7);
+    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.9), 0 0 70px rgba(244, 63, 94, 0.3);
+}
+
 #webgl-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100svh;
-    z-index: 0;
+    height: 100vh;
+    z-index: -1;
     pointer-events: none;
 }
 
-/* Glassmorphism Panel */
-.glass-panel {
-    background: rgba(13, 13, 22, 0.75);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(244, 63, 94, 0.2);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(244, 63, 94, 0.05);
-}
-
-/* Story Cards Transitions */
 .story-card {
     display: none;
     opacity: 0;
-    transform: scale(0.95);
+    transform: translateY(50px) scale(0.9) rotateX(15deg);
 }
 
 .story-card.active {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    display: block;
     opacity: 1;
-    transform: scale(1);
-    animation: fadeInCard 0.4s ease forwards;
+    transform: translateY(0) scale(1) rotateX(0deg);
 }
 
-@keyframes fadeInCard {
-    from {
-        opacity: 0;
-        transform: translateY(15px) scale(0.98);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-/* Floating Love Storm Text */
+/* Floating "Love You" Storm Text Style Behind Card 7 */
 .floating-love-text {
     position: absolute;
-    color: #fb7185;
     font-family: 'Great Vibes', cursive;
-    pointer-events: none;
+    font-size: 2.5rem;
+    color: #f43f5e;
+    text-shadow: 0 0 20px rgba(244, 63, 94, 0.9), 0 0 40px rgba(217, 70, 239, 0.6);
     user-select: none;
-    z-index: 45;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 5;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 6px;
-}
-::-webkit-scrollbar-track {
-    background: #050508;
-}
-::-webkit-scrollbar-thumb {
-    background: #f43f5e;
-    border-radius: 10px;
+/* Custom Styled Range Slider */
+input[type=range] {
+    accent-color: #f43f5e;
 }
 
-/* --- MOBILE RESPONSIVE FIXES --- */
-@media screen and (max-width: 640px) {
+/* Mobile Responsive Adjustments */
+@media (max-width: 640px) {
     main {
-        padding: 0 12px;
+        padding: 0 10px !important;
         width: 100% !important;
     }
-
-    #card-wrapper {
-        min-height: 450px !important;
-        padding: 20px 16px !important;
-        border-radius: 20px !important;
+    .glass-panel {
+        padding: 1.25rem !important;
+        min-height: 380px !important;
     }
-
     h1.font-vibes {
-        font-size: 3.5rem !important;
+        font-size: 4rem !important;
     }
-
-    .story-card h2 {
+    h2 {
         font-size: 1.35rem !important;
     }
-
-    .story-card p {
+    p {
         font-size: 0.9rem !important;
-        line-height: 1.5 !important;
-    }
-
-    /* Buttons sizing for mobile fingers */
-    button {
-        font-size: 0.8rem !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
     }
 }
-html, body { width: 100%; height: 100%; margin: 0; padding: 0; background-color: #020408; overflow-x: hidden; }
-
-@media (max-width: 640px) { main { padding: 0 10px; } .glass-panel { padding: 1.25rem !important; min-height: 380px !important; } h1.font-vibes { font-size: 4rem !important; } h2 { font-size: 1.35rem !important; } p { font-size: 0.9rem !important; } }
