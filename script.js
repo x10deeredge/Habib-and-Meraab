@@ -226,8 +226,8 @@ cardWrapper.addEventListener('mouseleave', () => {
 
 // Nickname selection state
 let selectedNames = {
-    her: "Meeraab",
-    him: "Habib"
+    her: "Eman",
+    him: "Abdul Manan"
 };
 
 function selectNickname(type, val, btn) {
