@@ -226,8 +226,8 @@ cardWrapper.addEventListener('mouseleave', () => {
 
 // Nickname selection state
 let selectedNames = {
-    her: "Eman",
-    him: "Abdul Manan"
+    her: "Meeraab",
+    him: "Habib"
 };
 
 function selectNickname(type, val, btn) {
@@ -451,6 +451,10 @@ function resetStory() {
 }
 
 window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
