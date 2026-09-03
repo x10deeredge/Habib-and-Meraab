@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Meeraab | Ultimate Masterpiece ❤️</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 selection:bg-rose-500 selection:text-white relative overflow-hidden">
+
+    <div id="webgl-container"></div>
+
+    <div id="love-rain-container" class="absolute inset-0 pointer-events-none overflow-hidden z-40 hidden"></div>
+
+    <main class="w-full max-w-2xl z-10 px-4">
+        
+        <div class="text-center mb-6">
+            <div class="flex items-center justify-center gap-3 md:gap-4 flex-wrap">
+                <span class="font-vibes text-5xl md:text-7xl text-rose-400 drop-shadow-[0_0_25px_rgba(244,63,94,0.9)]">Habib</span>
+                <span class="text-3xl md:text-5xl text-rose-500 animate-pulse drop-shadow-[0_0_20px_rgba(244,63,94,0.9)]">❤️</span>
+                <span class="font-vibes text-5xl md:text-7xl text-rose-400 drop-shadow-[0_0_25px_rgba(244,63,94,0.9)]">Meeraab</span>
+            </div>
+            <p class="font-cinzel text-xs md:text-sm tracking-[0.4em] text-rose-100 uppercase mt-3 font-medium opacity-100">Sirf Aapke Liye</p>
+        </div>
+
+        <div id="card-wrapper" class="glass-panel rounded-3xl p-6 md:p-10 relative overflow-hidden min-h-[420px] flex flex-col justify-between shadow-2xl">
+
+            <div id="card-0" class="story-card active">
+                <h2 class="font-cinzel text-2xl md:text-3xl text-white mb-3">Pehle Naam To Chuniye! ✨</h2>
+                <p class="text-gray-200 text-sm md:text-base mb-4 font-light">
+                    "Safar shuru karne se pehle batayein, aap apas mein ek dusre ko kis naam se bulayenge?"
+                </p>
+
+                <div class="space-y-4 mb-6">
+                    <div>
+                        <label class="block text-xs font-semibold text-rose-300 uppercase tracking-wider mb-1.5">(Meeraab ke liye): Habib aap ko kis naam se bulaye?</label>
+                        <div class="grid grid-cols-3 gap-2 mb-2">
+                            <button type="button" onclick="selectNickname('her', 'Jaan', this)" class="nick-btn-her bg-rose-500/20 border border-rose-500/40 text-rose-200 text-xs py-2 rounded-xl transition hover:bg-rose-500/40">Jaan</button>
+                            <button type="button" onclick="selectNickname('her', 'Baby', this)" class="nick-btn-her bg-rose-500/20 border border-rose-500/40 text-rose-200 text-xs py-2 rounded-xl transition hover:bg-rose-500/40">Baby</button>
+                            <button type="button" onclick="selectNickname('her', 'Jana', this)" class="nick-btn-her bg-rose-500/20 border border-rose-500/40 text-rose-200 text-xs py-2 rounded-xl transition hover:bg-rose-500/40">Jana</button>
+                            <button type="button" onclick="selectNickname('her', 'Sweetheart', this)" class="nick-btn-her bg-rose-500/20 border border-rose-500/40 text-rose-200 text-xs py-2 rounded-xl transition hover:bg-rose-500/40">Sweetheart</button>
+                            <button type="button" onclick="selectNickname('her', 'Wife', this)" class="nick-btn-her bg-rose-500/20 border border-rose-500/40 text-rose-200 text-xs py-2 rounded-xl transition hover:bg-rose-500/40">Wife</button>
+                        </div>
+                        <input type="text" id="custom-her" placeholder="Ya apna custom naam likhein..." oninput="setCustomNickname('her', this.value)" class="w-full bg-gray-900/80 border border-rose-500/30 rounded-xl px-3 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-rose-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-rose-300 uppercase tracking-wider mb-1.5">(Mera) Naam: Aap Habib ko kis naam se bulayengi?</label>
+                        <div class="grid grid-cols-4 gap-2 mb-2 relative h-10">
+                            <button type="button" onclick="selectNickname('him', 'Jaan', this)" class="nick-btn-him bg-rose-500/20 border border-rose-500/40 text-rose-200 text-xs py-2 rounded-xl transition hover:bg-rose-500/40">Jaan</button>
+                            <button type="button" onclick="selectNickname('him', 'Jana', this)" class="nick-btn-him bg-rose-500/20 border border-rose-500/40 text-rose-200 text-xs py-2 rounded-xl transition hover:bg-rose-500/40">Jana</button>
+                            <button type="button" id="troll-btn-1" onmouseover="teleportTrollButton('troll-btn-1')" onclick="teleportTrollButton('troll-btn-1')" class="bg-gray-900/80 border border-gray-700 text-gray-400 text-xs py-2 rounded-xl transition absolute right-16 w-20">Monkey 🐒</button>
+                            <button type="button" id="troll-btn-2" onmouseover="teleportTrollButton('troll-btn-2')" onclick="teleportTrollButton('troll-btn-2')" class="bg-gray-900/80 border border-gray-700 text-gray-400 text-xs py-2 rounded-xl transition absolute right-0 w-16">Ullu 🦉</button>
+                        </div>
+                        <input type="text" id="custom-him" placeholder="Ya Habib ke liye custom naam likhein..." oninput="setCustomNickname('him', this.value)" class="w-full bg-gray-900/80 border border-rose-500/30 rounded-xl px-3 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-rose-500">
+                    </div>
+                </div>
+
+                <div class="flex justify-end">
+                    <button onclick="startStoryWithNicknames()" class="bg-rose-600 hover:bg-rose-500 text-white font-medium px-7 py-3 rounded-full transition shadow-lg shadow-rose-600/40 text-xs uppercase tracking-wider">
+                        Aage Badhiye ✨
+                    </button>
+                </div>
+            </div>
+
+            <div id="card-1" class="story-card">
+                <h2 class="font-cinzel text-2xl md:text-3xl text-white mb-4"><span class="dynamic-her">Meeraab</span>... Suniye na! ❤️</h2>
+                <p class="text-gray-200 text-base md:text-lg leading-relaxed mb-6 font-light">
+                    "Pata nahi yeh sab kab aur kaise shuru hua, par sach yeh hai ke <span class="dynamic-her">Meeraab</span>... aap mujhe waqai bohot achhi lagne lagi hain. <span class="dynamic-him">Habib</span> ki zindagi mein ab bas aap hi ka zikr hota hai, aur subha uth kar jab aapka message aata hai, toh dil khush ho jata hai."
+                </p>
+                
+                <div class="bg-rose-950/30 border border-rose-500/30 rounded-2xl p-3 mb-6 text-center backdrop-blur-md">
+                    <p id="compliment-box" class="text-xs text-rose-300 font-medium italic mb-2">Ek chota sa sach dekhna hai?</p>
+                    <button onclick="generateCompliment()" class="bg-rose-500/20 hover:bg-rose-500/40 text-rose-200 text-xs font-semibold px-4 py-1.5 rounded-full transition border border-rose-500/40">
+                        Yahan click kijiye ✨
+                    </button>
+                </div>
+
+                <div class="flex items-center justify-between gap-4 relative h-14">
+                    <button onclick="nextCard(2)" class="bg-rose-600 hover:bg-rose-500 text-white font-medium px-7 py-3 rounded-full transition shadow-lg shadow-rose-600/40">
+                        Aage Chaliye ✨
+                    </button>
+                    <button id="teleport-btn" onmouseover="teleportButton('teleport-btn')" onclick="teleportButton('teleport-btn')" class="bg-gray-900/80 hover:bg-gray-800 text-gray-400 font-medium px-6 py-3 rounded-full transition border border-gray-700 absolute right-0">
+                        Nahi 🙈
+                    </button>
+                </div>
+            </div>
+
+            <div id="card-2" class="story-card">
+                <h2 class="font-cinzel text-2xl md:text-3xl text-white mb-4">Meri Buraiyan Aur Reality</h2>
+                <p class="text-gray-200 text-base md:text-lg leading-relaxed mb-4 font-light">
+                    "Dekhiye main koi perfect insaan nahi hoon. Mujh mein bohot saari buraiyan hain... jaise smoking ki aadat, thoda ego, aur gussa bhi. Par ek baat sach hai, mujhe public mein apni respect ka bohot khayal rehta hai aur main chahta hoon ke meri yeh cheezein aap samjhein."
+                </p>
+                <div class="bg-rose-950/30 border border-rose-500/20 rounded-2xl p-3 mb-6 text-rose-300 text-sm italic text-center backdrop-blur-md">
+                    "Mujhe aisi partner chahiye jo mujhe judge na kare balki har haal mein mere sath khadi rahe."
+                </div>
+                <div class="flex items-center justify-between">
+                    <button onclick="prevCard(1)" class="text-gray-400 hover:text-white text-sm transition">← Peeche</button>
+                    <button onclick="nextCard(3)" class="bg-rose-600 hover:bg-rose-500 text-white font-medium px-7 py-3 rounded-full transition shadow-lg shadow-rose-600/40">
+                        Agli Baat Suniye ✨
+                    </button>
+                </div>
+            </div>
+
+            <div id="card-3" class="story-card">
+                <h2 class="font-cinzel text-2xl md:text-3xl text-white mb-4">Aapse Ek Umeed</h2>
+                <p class="text-gray-200 text-base md:text-lg leading-relaxed mb-4 font-light">
+                    "Main chahta hoon ke aap mujhe bilkul ek bachhe ki tarah rakha karein. Mere sath be-inteha pyaar kiya karein, meri care karein. Badle mein <span class="dynamic-him">Habib</span> aapko duniya ki har khushi dega, aapko kabhi kisi cheez ki kami nahi hone dega."
+                </p>
+                
+                <div class="bg-rose-950/30 border border-rose-500/30 rounded-2xl p-3 mb-6 text-center backdrop-blur-md">
+                    <button onclick="revealConfession()" class="w-full bg-gradient-to-r from-rose-600 to-pink-600 text-white text-xs font-semibold py-2 rounded-xl transition shadow-md">
+                        Secret confession kholiye 🔒
+                    </button>
+                    <p id="secret-text" class="text-xs text-rose-200 mt-2 hidden italic">"Bas aap mera haath thame rakhiyega, baaki sab main sambhal lunga! 😉"</p>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <button onclick="prevCard(2)" class="text-gray-400 hover:text-white text-sm transition">← Peeche</button>
+                    <button onclick="nextCard(4)" class="bg-rose-600 hover:bg-rose-500 text-white font-medium px-7 py-3 rounded-full transition shadow-lg shadow-rose-600/40">
+                        Dekhiye Kitna Pyaar Hai 🚀
+                    </button>
+                </div>
+            </div>
+
+            <div id="card-4" class="story-card">
+                <h2 class="font-cinzel text-2xl md:text-3xl text-white mb-2">Kitna Pyaar Hai Aapse?</h2>
+                <p class="text-rose-200 text-sm mb-4 font-light" id="meter-text">Slider move karke check kijiye mera dil!</p>
+                
+                <div class="mb-6 bg-gray-950/50 backdrop-blur-md p-4 rounded-2xl border border-rose-500/20">
+                    <div class="flex justify-between text-xs font-semibold text-rose-400 mb-2">
+                        <span>0%</span>
+                        <span id="meter-value" class="text-xl font-bold text-white font-cinzel">500%</span>
+                        <span>10,000%</span>
+                    </div>
+                    <input type="range" id="love-slider" min="0" max="10000" value="500" class="w-full h-2.5 bg-gray-800 rounded-lg appearance-none cursor-pointer">
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <button onclick="prevCard(3)" class="text-gray-400 hover:text-white text-sm transition">← Peeche</button>
+                    <button onclick="nextCard(5)" class="bg-rose-600 hover:bg-rose-500 text-white font-medium px-7 py-3 rounded-full transition shadow-lg shadow-rose-600/40">
+                        Aage Badhiye 🌹
+                    </button>
+                </div>
+            </div>
+
+            <div id="card-5" class="story-card">
+                <h2 class="font-cinzel text-2xl md:text-3xl text-white mb-4">Hamari Meethi Nok-Jhok</h2>
+                <p class="text-gray-200 text-base md:text-lg leading-relaxed mb-4 font-light">
+                    "Chahe din bhar jitni bhi behas ho jaye, par raat ko bina baat kiye hum dono se nahi raha jata. Aapka gussa karna aur phir mera manana, yeh sab mujhe kisi khubsurat kahani jaisa lagta hai."
+                </p>
+
+                <div class="bg-rose-950/30 border border-rose-500/30 rounded-2xl p-4 mb-6 text-center backdrop-blur-md">
+                    <p id="excuse-box" class="text-xs text-rose-200 font-medium mb-3 italic">Dekhiye hum kyun larte hain?</p>
+                    <button onclick="generateExcuse()" class="bg-rose-500/20 hover:bg-rose-500/40 text-rose-300 text-xs font-semibold px-5 py-2 rounded-full transition border border-rose-500/40">
+                        Wajah Dekhiye 💡
+                    </button>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <button onclick="prevCard(4)" class="text-gray-400 hover:text-white text-sm transition">← Peeche</button>
+                    <button onclick="nextCard(6)" class="bg-rose-600 hover:bg-rose-500 text-white font-medium px-7 py-3 rounded-full transition shadow-lg shadow-rose-600/40">
+                        Aakhri Sawaal 💍
+                    </button>
+                </div>
+            </div>
+
+            <div id="card-6" class="story-card">
+                <h2 class="font-cinzel text-2xl md:text-3xl text-white mb-4">Ek Aakhri Baat...</h2>
+                <p class="text-gray-100 text-lg md:text-xl leading-relaxed mb-8 font-medium">
+                    "In sab buraiyon aur kamzoriyon ke sath... <span class="dynamic-her">Meeraab</span>, kya aap mujhe apnana pasand karengi aur meri Valentine banengi? 🌹"
+                </p>
+                <div class="flex items-center justify-between gap-4">
+                    <button onclick="prevCard(5)" class="text-gray-400 hover:text-white text-sm transition">← Peeche</button>
+                    <div class="flex gap-3">
+                        <button onclick="nextCard(7)" class="bg-rose-600 hover:bg-rose-500 text-white font-bold px-7 py-3 rounded-full transition shadow-lg">
+                            Haan, Apna lungi! ❤️
+                        </button>
+                        <button onclick="nextCard(8)" class="bg-gray-900/80 hover:bg-gray-800 text-gray-300 font-bold px-7 py-3 rounded-full transition border border-gray-700">
+                            Nahi 🙈
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="card-8" class="story-card">
+                <h2 class="font-cinzel text-2xl md:text-3xl text-white mb-4">Acha Ji? Soch Liya Ache Se?</h2>
+                <p class="text-gray-100 text-lg md:text-xl leading-relaxed mb-8 font-medium">
+                    "Itni jaldi 'Nahi' keh diya? <span class="dynamic-him">Habib</span> ko aise chhod dengi kya? Ek baar phir se soch lijiye <span class="dynamic-her">Meeraab</span>! 😉"
+                </p>
+                <div class="flex items-center justify-end gap-3">
+                    <button onclick="nextCard(7)" class="bg-rose-600 hover:bg-rose-500 text-white font-bold px-7 py-3 rounded-full transition shadow-lg">
+                        Maan Gayi, Haan! ❤️
+                    </button>
+                    <button onclick="nextCard(9)" class="bg-gray-900/80 hover:bg-gray-800 text-gray-300 font-bold px-7 py-3 rounded-full transition border border-gray-700">
+                        Phir Bhi Nahi 😜
+                    </button>
+                </div>
+            </div>
+
+            <div id="card-9" class="story-card">
+                <h2 class="font-cinzel text-2xl md:text-3xl text-white mb-4">Ab Kahan Jayengi Bhaag Kar?</h2>
+                <p class="text-gray-100 text-lg md:text-xl leading-relaxed mb-8 font-medium">
+                    "Ab toh koi option hi nahi bacha, chup chap 'Haan' hi karni padegi! 🙈🌹"
+                </p>
+                <div class="flex items-center justify-between gap-4 relative h-14">
+                    <button onclick="nextCard(7)" class="bg-rose-600 hover:bg-rose-500 text-white font-bold px-7 py-3 rounded-full transition shadow-lg animate-pulse">
+                        BAS AB HAAN HAI! ❤️✨
+                    </button>
+                    <button id="teleport-btn-2" onmouseover="teleportButton('teleport-btn-2')" onclick="teleportButton('teleport-btn-2')" class="bg-gray-900/80 hover:bg-gray-800 text-gray-400 font-medium px-6 py-3 rounded-full transition border border-gray-700 absolute right-0">
+                        Nahi 🙈
+                    </button>
+                </div>
+            </div>
+
+            <div id="card-7" class="story-card">
+                <div class="text-center py-4">
+                    <div class="text-6xl mb-3 animate-bounce">💖</div>
+                    <h3 class="font-cinzel text-2xl md:text-3xl text-white mb-3"><span class="dynamic-her">Meeraab</span> Ne Haan Keh Diya!</h3>
+                    <p class="text-rose-400 font-vibes text-3xl mb-3">Love You ❤️ Love You ❤️ Love You Forever</p>
+                    <p class="text-gray-200 text-base leading-relaxed mb-6 font-light">
+                        "Meri buraiyon ke sath mujhe apnane ke liye bohot shukriya, <span class="dynamic-her">Meeraab</span>. I Love You Forever! Ab aapko hamesha apni jaan ki tarah rakunga."
+                    </p>
+                    <button onclick="resetStory()" class="bg-rose-600 hover:bg-rose-500 text-white font-semibold px-8 py-3 rounded-full transition shadow-lg">
+                        Dobara Dekhiye 🔄
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-6 text-xs text-rose-200 font-cinzel tracking-widest font-medium opacity-100">
+            MADE WITH ALL MY HEART FOR MEERAAB
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
