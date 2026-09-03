@@ -1,3 +1,56 @@
+/* ================= PASSCODE KEYPAD LOGIC ================= */
+let enteredCode = "";
+const correctCode = "2608";
+
+function pressKey(num) {
+    if (enteredCode.length < 4) {
+        enteredCode += num;
+        updateDisplay();
+    }
+}
+
+function clearKey() {
+    enteredCode = "";
+    updateDisplay();
+    document.getElementById('error-msg').textContent = "";
+}
+
+function updateDisplay() {
+    const display = document.getElementById('passcode-display');
+    if (!display) return;
+    let dots = "";
+    for (let i = 0; i < 4; i++) {
+        dots += i < enteredCode.length ? " ❤️ " : " _ ";
+    }
+    display.textContent = dots;
+}
+
+function submitCode() {
+    const errorMsg = document.getElementById('error-msg');
+    if (enteredCode === correctCode) {
+        if (errorMsg) errorMsg.textContent = "";
+        gsap.to("#passcode-screen", {
+            opacity: 0,
+            scale: 1.1,
+            duration: 0.6,
+            ease: "power2.inOut",
+            onComplete: () => {
+                document.getElementById('passcode-screen').style.display = 'none';
+                const main = document.getElementById('main-content');
+                main.classList.remove('opacity-0', 'pointer-events-none');
+                gsap.fromTo(main, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "back.out(1.2)" });
+            }
+        });
+    } else {
+        if (errorMsg) errorMsg.textContent = "Galat password! Dobara try karein. ❌";
+        gsap.fromTo("#passcode-display", { x: -10 }, { x: 10, repeat: 3, yoyo: true, duration: 0.08 });
+        enteredCode = "";
+        updateDisplay();
+    }
+}
+
+
+/* ================= 3D WEBGL HEART & PARTICLES ================= */
 const container = document.getElementById('webgl-container');
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -211,7 +264,6 @@ function teleportTrollButton(btnId) {
 }
 
 function startStoryWithNicknames() {
-    // Apply names dynamically across all elements
     document.querySelectorAll('.dynamic-her').forEach(el => el.textContent = selectedNames.her);
     document.querySelectorAll('.dynamic-him').forEach(el => el.textContent = selectedNames.him);
     showCard(1);
@@ -296,19 +348,21 @@ const loveSlider = document.getElementById('love-slider');
 const meterValue = document.getElementById('meter-value');
 const meterText = document.getElementById('meter-text');
 
-loveSlider.addEventListener('input', (e) => {
-    const val = e.target.value;
-    meterValue.textContent = `${val}%`;
-    if (val < 2500) {
-        meterText.textContent = "Bas itna pyaar? Thoda aur slide karo mere pagalpan ke liye! 😉";
-    } else if (val < 6000) {
-        meterText.textContent = "Ab baat ban rahi hai! You mean the absolute universe to me. ❤️";
-    } else if (val < 9500) {
-        meterText.textContent = "Behad bepanah, pagal kar dene wala pyaar! Infinite & Beyond! ✨";
-    } else {
-        meterText.textContent = "MAXIMUM OBSESSION OVERLOAD! Mera dil sirf aur sirf aapka diwana hai! 💖🌹";
-    }
-});
+if (loveSlider) {
+    loveSlider.addEventListener('input', (e) => {
+        const val = e.target.value;
+        meterValue.textContent = `${val}%`;
+        if (val < 2500) {
+            meterText.textContent = "Bas itna pyaar? Thoda aur slide karo mere pagalpan ke liye! 😉";
+        } else if (val < 6000) {
+            meterText.textContent = "Ab baat ban rahi hai! You mean the absolute universe to me. ❤️";
+        } else if (val < 9500) {
+            meterText.textContent = "Behad bepanah, pagal kar dene wala pyaar! Infinite & Beyond! ✨";
+        } else {
+            meterText.textContent = "MAXIMUM OBSESSION OVERLOAD! Mera dil sirf aur sirf aapka diwana hai! 💖🌹";
+        }
+    });
+}
 
 let celebrationAudio = null;
 
@@ -359,7 +413,7 @@ function startLoveStorm() {
 
     for (let i = 0; i < 80; i++) {
         const span = document.createElement('span');
-    span.className = 'floating-love-text';
+        span.className = 'floating-love-text';
         span.textContent = "Love You ❤️";
         
         span.style.left = `${Math.random() * 100}vw`;
